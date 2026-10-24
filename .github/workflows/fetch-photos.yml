@@ -1,0 +1,27 @@
+name: fetch-photos
+on:
+  push:
+    paths: ['photos.txt']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download product photos listed in photos.txt
+        run: |
+          mkdir -p photos
+          while read -r name url; do
+            [ -z "$name" ] && continue
+            curl -sSL --fail -A "Mozilla/5.0" -o "photos/$name" "$url" || echo "failed $name"
+          done < photos.txt
+          ls -la photos
+      - name: Commit photos
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add photos
+          git commit -m "fetch product photos" || echo "nothing new"
+          git push
