@@ -1,0 +1,43 @@
+{
+  "brand_name": "FINDTHEBEST",
+  "image_base_url": "https://jarvissinghania.github.io/pins-site/pins/",
+  "default_board": "Home Decor Finds India",
+  "style": "photo",
+  "show_price": false,
+  "pins_per_day": 5,
+  "variants_per_product": 2,
+  "start_date": "tomorrow",
+  "max_days_ahead": 28,
+  "post_times_ist": [
+    "09:30",
+    "12:30",
+    "17:30",
+    "19:30",
+    "21:30"
+  ],
+  "rows_per_csv": 50,
+  "cta_text": "Shop now on {store}",
+  "disclosure": "#affiliate - I may earn a commission if you buy through this link, at no extra cost to you.",
+  "colors": [
+    {
+      "bg": "#F7F1E8",
+      "panel": "#2F3E46",
+      "text": "#FFFFFF",
+      "accent": "#E9A23B"
+    },
+    {
+      "bg": "#EEF4F1",
+      "panel": "#7A2E3A",
+      "text": "#FFFFFF",
+      "accent": "#F2C14E"
+    },
+    {
+      "bg": "#FFFFFF",
+      "panel": "#1F4E5F",
+      "text": "#FFFFFF",
+      "accent": "#FF8C61"
+    }
+  ],
+  "pins_dir": "pins",
+  "products_per_week": 15
+}
