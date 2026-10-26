@@ -388,6 +388,12 @@ def main():
         jobs = jobs[:max_pins]
 
     start = datetime.now(IST).date() + timedelta(days=1 if cfg["start_date"] == "tomorrow" else 0)
+    # never double up with pins already scheduled by an earlier batch
+    if os.path.exists(log_path):
+        with open(log_path, encoding="utf-8") as f:
+            last = max((r["publish_ist"][:10] for r in csv.DictReader(f) if r.get("publish_ist")), default="")
+        if last:
+            start = max(start, datetime.strptime(last, "%Y-%m-%d").date() + timedelta(days=1))
     slots = schedule_slots(cfg, len(jobs), start)
 
     site_dir = os.path.join(ROOT, cfg.get("pins_dir", "site/pins"))
