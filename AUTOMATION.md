@@ -102,7 +102,7 @@ Check they're live with `python generate_pins.py --check-urls`.
 
 | key | default | meaning |
 |---|---|---|
-| pins_per_day | 5 | Keep 3–10/day; a brand-new account should start at 3–5. |
+| pins_per_day | 10 | 10 pins/day, each a different product (needs ~35 products/week at 2 designs each). |
 | variants_per_product | 2 | Two designs per product, posted on different days. |
 | post_times_ist | 09:30 … 22:00 | Slots in IST (±12 min random jitter). Converted to UTC for Pinterest. |
 | max_days_ahead | 28 | Pinterest only lets you schedule a limited time ahead; extra pins wait for the next run. |
@@ -118,3 +118,7 @@ Check they're live with `python generate_pins.py --check-urls`.
   "for small Indian homes", "Diwali decoration ideas".
 - Fresh images beat repins: the 2-variant setting already gives each link two new designs.
 - Mix in some non-affiliate pins (tips, room ideas) so the account isn't 100% links.
+
+
+## Filling extra time slots
+`python generate_pins.py --start YYYY-MM-DD --times 08:00,11:00` schedules the new products only at the given IST times starting that date (used to top up days that already have pins).

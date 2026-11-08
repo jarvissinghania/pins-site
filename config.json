@@ -4,15 +4,20 @@
   "default_board": "Home Decor Finds India",
   "style": "photo",
   "show_price": false,
-  "pins_per_day": 5,
+  "pins_per_day": 10,
   "variants_per_product": 2,
   "start_date": "tomorrow",
   "max_days_ahead": 28,
   "post_times_ist": [
+    "08:00",
     "09:30",
+    "11:00",
     "12:30",
+    "14:00",
+    "15:30",
     "17:30",
     "19:30",
+    "20:30",
     "21:30"
   ],
   "rows_per_csv": 50,
@@ -39,5 +44,5 @@
     }
   ],
   "pins_dir": "pins",
-  "products_per_week": 15
+  "products_per_week": 35
 }

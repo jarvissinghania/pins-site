@@ -351,6 +351,8 @@ def main():
     ap.add_argument("--all", action="store_true", help="regenerate every product, not just new ones")
     ap.add_argument("--push", action="store_true", help="git add/commit/push the site/ folder")
     ap.add_argument("--check-urls", action="store_true", help="check image URLs in the latest batch")
+    ap.add_argument("--start", help="first IST date YYYY-MM-DD (overrides the after-last-scheduled rule, e.g. to fill extra time slots)")
+    ap.add_argument("--times", help="comma-separated IST times to use instead of post_times_ist, e.g. 08:00,11:00")
     args = ap.parse_args()
     cfg = load_config()
 
@@ -394,6 +396,11 @@ def main():
             last = max((r["publish_ist"][:10] for r in csv.DictReader(f) if r.get("publish_ist")), default="")
         if last:
             start = max(start, datetime.strptime(last, "%Y-%m-%d").date() + timedelta(days=1))
+    if args.start:
+        start = datetime.strptime(args.start, "%Y-%m-%d").date()
+    if args.times:
+        cfg["post_times_ist"] = [t.strip() for t in args.times.split(",") if t.strip()]
+        cfg["pins_per_day"] = len(cfg["post_times_ist"])
     slots = schedule_slots(cfg, len(jobs), start)
 
     site_dir = os.path.join(ROOT, cfg.get("pins_dir", "site/pins"))
